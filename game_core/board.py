@@ -1,6 +1,8 @@
 #-*coding: UTF-8-*
 #!/usr/bin/python3.8
+
 """Module containing the GamingBoard Class, wich is used to design the maze"""
+
 class GamingBoard:
     """Class designing the board wich will be used to play.
     It is defined by 2D list with x and y coordinates, each one related to a
@@ -13,6 +15,7 @@ class GamingBoard:
     def __init__(self,map_file):
         """Initializing the maze with 2 sets, gathering the walls on one hand
         and the path on the other hand, as well as the Start and the Exit"""
+        
         with open(map_file,'r', encoding='utf-8') as file:
             self._walls = set()
             self._path = set()
