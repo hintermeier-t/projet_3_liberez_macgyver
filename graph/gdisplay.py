@@ -52,5 +52,10 @@ def display_screen():
                 displaying = False
             elif event.type == KEYDOWN and event.key == K_ESCAPE:
                 displaying = False
+            elif event.type == KEYDOWN and event.key == K_DOWN:
+                screen.blit(background, (0, 0))
+                background.blit(font.render("OOOK", 1, (10, 10, 10)), textpos)
+                screen.blit(background, (0, 0))
+                pg.display.flip()
 
     pg.quit()            
