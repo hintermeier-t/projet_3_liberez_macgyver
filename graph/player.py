@@ -1,8 +1,8 @@
 """Module containing the player sprite"""
 
-import pygame
+import pygame as pg
 
-class McSprite(pygame.sprite.Sprite) :
+class McSprite(pg.sprite.Sprite) :
     """Class displaying the player sprite.
     
     Gathering all we need to display the player Sprite (position, source picture etc...).
@@ -23,3 +23,7 @@ class McSprite(pygame.sprite.Sprite) :
         self.x = x
         self.y = y
         self.image, self.rect = load_image("MacGyver.png", -1)
+      
+    def update_pos(self, new_x, new_y):
+      self.x = new_x
+      self.y = new_y

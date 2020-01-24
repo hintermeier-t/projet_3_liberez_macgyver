@@ -5,19 +5,28 @@ import os, sys
 import pygame as pg
 from pygame.locals import *
 
+class Background(pg.sprite.Sprite):
+    """Class used to display the background of the game"""
+    
+    def __init__(self, image_file, location):
+        pg.sprite.Sprite.__init__(self)  #call Sprite initializer
+        self.image = pg.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
 def load_image(name, colorkey=None):
     """Function that load the sprite, taking string as name"""
 
-    file_name = os.path.join('../ressources', name)
+    file_name = os.path.join('ressources', name)
 
     try:
-        picture = pg.picture.load(file_name)
+        picture = pg.image.load(file_name)
     except pg.error:
     #if the picture doesn't load, we quit the game
         print ("Couldn't load the picture :", name)
         raise SystemExit(str(pg.compat.geterror()))
 
-    picture = picture.convert()
+   # picture = picture.convert()
     
     if colorkey is not None:
         if colorkey is -1:

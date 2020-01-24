@@ -2,4 +2,5 @@
 #!/usr/bin/python3.6
 
 from . import gdisplay
- 
+from . import player
+from . import maze
