@@ -3,20 +3,24 @@
 
 """Module containing the Position class, used to create the visual part of the game"""
 
-class Position(int):
+class Position:
 
-    def __new__(cls, value):
-        return super().__new__(cls, value)
+    def __init__(self, value):
+        self.pos = value
 
+    def __add__(self, value):
+        self.pos += value
+    def __sub__(self, value):
+        self.pos -= value
     @property
     def y(self):
         """Returning a y coordinate"""
-        return int(self) // 15
+        return int(self.pos) // 15
 
     @property
     def x(self):
         """Returning an x coordinate"""
-        return int(self) % 15
+        return int(self.pos) % 15
 
     @property
     def yx(self):
