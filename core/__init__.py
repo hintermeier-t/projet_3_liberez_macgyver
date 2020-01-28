@@ -6,4 +6,3 @@ from . import guard
 from . import items
 from . import hero
 from . import game
-from . import position

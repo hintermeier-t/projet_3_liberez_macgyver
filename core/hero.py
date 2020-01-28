@@ -3,8 +3,6 @@
 
 """Module containing the McGyver class, wich represent the player in the game"""
 
-from . import position as p
-
 class McGyver :
     """Class representing the player, with a position on the map, and the items
     he posess, and the action he can do like moving, catching and item or
@@ -15,7 +13,7 @@ class McGyver :
         We get the tuple containing the starting coordinates and change
         them into a list of coordinates we can work on"""
         
-        self._position = p.Position(init_position-1)
+        self._position = init_position
 
     @property
     def position(self):
@@ -23,11 +21,11 @@ class McGyver :
     
     @property
     def x(self):
-        return self._position.x
+        return self._position % 15
     
     @property
     def y(self):
-        return self._position.y    
+        return self._position // 15   
 
     def _set_position(self, move):
         self._position += move

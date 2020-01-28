@@ -5,10 +5,10 @@
 
 import os
 import random
-from .board import GamingBoard
-from .hero import McGyver
-from .items import UseableItem
-from .guard import EnnemyGuard
+from . import board
+from . import hero
+from . import items
+from . import guard
 
 class Game:
     """Game is the main class, used to generate the objects (the 3 items,
@@ -36,28 +36,30 @@ class Game:
             choice=input("Chose your level :\n")
 
         #Generating the maze with the chosen file, will be called with game.maze
-        self.maze = GamingBoard(os.path.join("maps", maps_list[int(choice)-1]+".txt"))
-        self.player = McGyver(self.maze.start)
-        self.ennemy = EnnemyGuard(self.maze.exit)
+        self.maze = board.GamingBoard(os.path.join("maps", maps_list[int(choice)-1]+".txt"))
+        self.player = hero.McGyver(self.maze.start)
+        self.ennemy = guard.EnnemyGuard(self.maze.exit)
 
         #generating the 3 items position
-        tmp_list = random.sample(self.maze.path, 3)
-        self.needle = UseableItem("needle",tmp_list[0])
-        self.tube = UseableItem("tube",tmp_list[1])
-        self.ether = UseableItem("ether",tmp_list[2])
+        tmp_list = random.sample(self.maze.path-{self.player.position,self.ennemy.position}, 3)
+        self.needle = items.UseableItem("needle",tmp_list[0])
+        self.tube = items.UseableItem("tube",tmp_list[1])
+        self.ether = items.UseableItem("ether",tmp_list[2])
 
     def win_or_lose(self):
         """Every move, Game verify if the player is on the guard, if so,
         does he have the items to knock him out ?"""
 
-        if player.position == ennemy.position:
-            if needle.is_collected and tube.is_collected and ether.is_collected:
-                return "Good job, Mac ! You ran away !"
+        if self.player.position == self.ennemy.position:
+            if self.needle.is_collected and self.tube.is_collected and self.ether.is_collected:
+                return True
             else :
-                return "Oh no ! The guard caught you ! You died !"
+                return False
+        return None
 
-    def collect (item): #shouldn't it be in McGyver or UseableItem class ?
+    def collect (self,item:items.UseableItem):
         """Every move, Game verify if the player can collect and item"""
 
-        if player.position == item.position:
+        if self.player.position == item.position:
             item.switch()
+        return item.is_collected

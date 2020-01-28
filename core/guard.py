@@ -12,4 +12,10 @@ class EnnemyGuard:
 
     @property
     def position(self):
-        return _position
+        return self._position
+    @property
+    def x(self):
+        return self._position % 15
+    @property
+    def y(self):
+        return self._position // 15

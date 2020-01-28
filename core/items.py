@@ -14,6 +14,8 @@ class UseableItem:
         be defined randomly, and the collected state is False at the begining."""
         self.name = name_string
         self._position = loc
+        self._x = loc % 15
+        self._y = loc // 15
         self._is_collected = False
 
     def switch(self):
@@ -23,6 +25,14 @@ class UseableItem:
     def position(self):
         return self._position
 
+    @property
+    def x(self):
+        return self._x
+
+    @property
+    def y(self):
+        return self._y
+        
     @property
     def is_collected(self):
         return self._is_collected
