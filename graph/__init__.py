@@ -5,3 +5,4 @@ from . import player
 from . import maze
 from . import item
 from . import guard
+from . import interface

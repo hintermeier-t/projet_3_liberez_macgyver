@@ -12,8 +12,6 @@ class GuardSprite(pg.sprite.Sprite):
     source picture etc...). Inherit the pygame Sprite class.
 
     Attributes :
-        x (int) : the horizontal position of the Sprite.
-        y (int) : the vertical position of the Sprite.
         image : the picture representing MacGyver.
         rect : the dimensions of the sprite.
     """
@@ -25,14 +23,6 @@ class GuardSprite(pg.sprite.Sprite):
           x (int) : horizontal position of the Guard.
           y (int) : vertical position of the Guard.
         """
-        self.x = x
-        self.y = y
+        super(GuardSprite, self).__init__()
         self.image, self.rect = gdisplay.load_image("Gardien.png", -1)
-
-    def print_guard(self, screen):
-        """Method to display the guard sprite.
-
-        Arg:
-        screen (Surface): Surface used to draw the sprite.
-        """
-        screen.blit(self.image, (self.x * 50, self.y * 50))
+        self.rect.topleft = (x*50, y*50)
